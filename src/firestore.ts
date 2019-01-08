@@ -1,7 +1,17 @@
 import { Firestore } from '@google-cloud/firestore'
 
-export function buildFirestore(): Firestore {
-  return new Firestore({
-    projectId: process.env.GCP_PROJECT
-  })
-}
+export const buildFirestore = (() => {
+  let instance: Firestore | undefined = undefined
+
+  return function(): Firestore {
+    if (instance) {
+      return instance
+    }
+
+    instance = new Firestore({
+      projectId: process.env.GCP_PROJECT
+    })
+
+    return instance
+  }
+})()
