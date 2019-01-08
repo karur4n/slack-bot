@@ -1,0 +1,20 @@
+{
+  "private": true,
+  "license": "MIT",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "tsc && npm run deploy:functions && npm run deploy:pubsub",
+    "deploy:functions": "gcloud beta functions deploy handleSlackEventRequest --trigger-http --env-vars-file .env.yaml && gcloud beta functions deploy refreshSpotifyToken --trigger-http --env-vars-file .env.yaml",
+    "deploy:pubsub": "gcloud beta functions deploy handleByBot --trigger-resource my-topic --trigger-event google.pubsub.topic.publish --env-vars-file .env.yaml"
+  },
+  "dependencies": {
+    "@google-cloud/firestore": "^0.19.0",
+    "@google-cloud/pubsub": "^0.22.2",
+    "@types/google-cloud__pubsub": "^0.18.1",
+    "@types/node": "^10.12.18",
+    "axios": "^0.18.0",
+    "prettier": "^1.15.3",
+    "typescript": "^3.2.2"
+  }
+}
