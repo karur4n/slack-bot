@@ -13,3 +13,4 @@
 - Cloud Scheduler
   - Spotify のトークンリフレッシュ用
 - Firestore
+- Pub/Sub
