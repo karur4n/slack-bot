@@ -25,9 +25,6 @@ export async function getCurrentlyPlayingTrack(): Promise<
   const response = await axios.get<SpotifyApiCurrentlyPlayingTrack>(
     'https://api.spotify.com/v1/me/player/currently-playing',
     {
-      params: {
-        market: 'JP'
-      },
       headers: {
         'Accept-Language': 'ja;q=1',
         Authorization: `Bearer ${tokenDoc.accessToken}`
